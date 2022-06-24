@@ -423,9 +423,13 @@ func encodingOf(node Node) encoding.Encoding {
 	// the opportunity to override this behavior if needed.
 	//
 	// https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-length-byte-array-delta_length_byte_array--6
-	if node.Type().Kind() == ByteArray && encoding == nil {
-		encoding = &DeltaLengthByteArray
-	}
+
+	// default PLAIN
+	// TODO(nvvu): provide a way to config this behavior
+	// if node.Type().Kind() == ByteArray && encoding == nil {
+	// 	encoding = &DeltaLengthByteArray
+	// }
+
 	if encoding == nil {
 		encoding = &Plain
 	}
